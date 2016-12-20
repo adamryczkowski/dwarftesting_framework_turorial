@@ -1,17 +1,17 @@
 site_name: My Docs
 pages:
   - Home: index.md
-  - Grid-tools: grid-tools.md
+  - Grid-tools: 1-grid-tools.md
   - Testing framework: 
-        - Serialbox: serialbox.md
-        - Verification framework: dwarfs.md
-        - Advanced debugging: debuging.md
+        - Serialbox: 2-1-serialbox.md
+        - Verification framework: 2-2-dwarfs.md
+        - Advanced debugging: 2-3-debuging.md
   - Colaboration framework:
-        - Git & git flow: git-flow.md
-        - Open project: openproject.md
+        - Git & git flow: 3-1-git-flow.md
+        - Open project: 3-2-openproject.md
   - Tools:
-        - cmake: cmake.md
-        - slack: slack.md
-        - jenkins: jenkins.md
-  - General tips: misc.md
+        - cmake: 4-1-cmake.md
+        - slack: 4-2-slack.md
+        - jenkins: 4-3-jenkins.md
+  - General tips: 4-4-misc.md
 theme: readthedocs
