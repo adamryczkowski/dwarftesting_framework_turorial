@@ -5,7 +5,7 @@ pages:
   - Testing framework: 
         - Serialbox: 2-1-serialbox.md
         - Verification framework: 2-2-dwarfs.md
-        - Advanced debugging: 2-3-debuging.md
+        - Advanced debugging: 2-3-debugging.md
   - Colaboration framework:
         - Git & git flow: 3-1-git-flow.md
         - Open project: 3-2-openproject.md
