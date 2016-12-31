@@ -91,3 +91,7 @@ echo "pa$$word" | sudo openconnect https://vpn.imgw.pl -U <ubuntu username> -u <
 
 where `pa$$word` is your secret password to VPN, `ubuntu username` is a username under which you are locally logged in. It is needed for dropping privileges after successful connection for increased local security. `login` is a login you have received.
 
+# How to install CUDA on LXC container
+
+Didn't try it yet, but you can take a look at http://sqream.com/setting-cuda-linux-containers-2/
+

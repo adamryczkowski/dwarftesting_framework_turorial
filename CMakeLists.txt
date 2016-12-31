@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
+project(docs)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+set(CMAKE_PREFIX_PATH cmake)
+find_package(MkDocs REQUIRED)
+
+
+# message(STATUS "${MKDOCS_EXECUTABLE} ${MKDOCS_VERSION}")
+message(STATUS "ENGINE NAME ${ENGINE_NAME}")
+
+set(PROJECT_NAME "Propoze documentation")
+set(AUTHOR "Adam Ryczkowski")
+set(COPYRIGHT ${ENGINE_COPYRIGHT})
+set(DOCS_DIR ${PROJECT_SOURCE_DIR})
+set(SITE_DIR ${PROJECT_BINARY_DIR}/docs)
+set(USE_DIRECTORY_URLS FALSE)
+set(PROJECT_VERSION ${ENGINE_VERSION_FULL})
+configure_file("mkdocs.yml.in" "${PROJECT_BINARY_DIR}/mkdocs.yml")
+
+set(DOCUMENTATION_FORMAT "SITE" CACHE STRING "HTML, PDF, EBOOK or live site")
+set(DOCUMENTATION_FORMAT_Strings
+  "LIVE_SITE;HTML;PDF;EBOOK")
+set_property(CACHE DOCUMENTATION_FORMAT PROPERTY STRINGS ${DOCUMENTATION_FORMAT_Strings})
+
+if ("${DOCUMENTATION_FORMAT}" MATCHES "HTML")
+	add_custom_target(docs ALL ${MKDOCS_EXECUTABLE} build
+		          WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+		          COMMENT "Generating HTML documentation" VERBATIM)
+	install(DIRECTORY "${PROJECT_BINARY_DIR}/docs" DESTINATION .
+	PATTERN "CMakeLists.txt" EXCLUDE
+	PATTERN "mkdocs.yml.in" EXCLUDE)
+elseif("${DOCUMENTATION_FORMAT}" MATCHES "PDF")
+
+endif()
+
+
+
