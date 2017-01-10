@@ -1,4 +1,4 @@
-docs_dir: @DOCS_DIR@
+docs_dir: @DOCS_DIR@/docs
 site_dir: @SITE_DIR@
 site_name: @PROJECT_NAME@
 site_author: @AUTHOR@
