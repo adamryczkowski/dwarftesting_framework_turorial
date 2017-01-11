@@ -17,9 +17,9 @@ set(USE_DIRECTORY_URLS FALSE)
 set(PROJECT_VERSION ${ENGINE_VERSION_FULL})
 configure_file("${DOCS_DIR}/mkdocs.yml.in" "${PROJECT_BINARY_DIR}/mkdocs.yml")
 
-set(DO_PDF 1 CACHE BOOL "Whether generate PDF documentation (requires mkdocs2pandoc + LaTeX)")
+set(DO_PDF 0 CACHE BOOL "Whether generate PDF documentation (requires mkdocs2pandoc + LaTeX)")
 set(DO_HTML 1 CACHE BOOL "Whether generate documentation in static HTML")
-set(DO_EBOOK 1 CACHE BOOL "Whether generate documentation in epub format (requires mkdocs2pandoc)")
+set(DO_EBOOK 0 CACHE BOOL "Whether generate documentation in epub format (requires mkdocs2pandoc)")
 set(DO_LIVE 0 CACHE BOOL "Whether to start server that serves the documentation in http://localhost:8000")
 set(SITE_DIR ${PROJECT_BINARY_DIR}/${DOCUMENTATION_FORMAT})
 
