@@ -20,7 +20,7 @@ configure_file("${DOCS_DIR}/mkdocs.yml.in" "${PROJECT_BINARY_DIR}/mkdocs.yml")
 set(DO_PDF 0 CACHE BOOL "Whether generate PDF documentation (requires mkdocs2pandoc + LaTeX)")
 set(DO_HTML 1 CACHE BOOL "Whether generate documentation in static HTML")
 set(DO_EBOOK 0 CACHE BOOL "Whether generate documentation in epub format (requires mkdocs2pandoc)")
-set(DO_LIVE 0 CACHE BOOL "Whether to start server that serves the documentation in http://localhost:8000")
+set(DO_LIVE 1 CACHE BOOL "Whether to start server that serves the documentation in http://localhost:8000")
 set(SITE_DIR ${PROJECT_BINARY_DIR}/${DOCUMENTATION_FORMAT})
 
 set(PD_DIR ${PROJECT_BINARY_DIR})
@@ -70,16 +70,25 @@ if (${DO_EBOOK})
 endif()
 
 if (${DO_LIVE})
+	configure_file("${PROJECT_SOURCE_DIR}/live_docs.sh.in" "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/live_docs.sh")
+	file(COPY ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/live_docs.sh
+		DESTINATION ${PROJECT_BINARY_DIR}
+		FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 	list(APPEND DOCUMENTATION_FORMAT "live")
-	# Commands that prepare DOCS_SITE target (live web server)
 
-	add_custom_target(docs_site ALL "${MKDOCS_EXECUTABLE} serve &"
-			  VERBATIM
-			  WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-			  COMMENT "Generating starting to serve the documentation." VERBATIM)
+	file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/live_docs.cmake" 
+		"file(COPY  ${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/live_docs.sh DESTINATION ${PROJECT_BINARY_DIR} FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)"
+	)
+
+	add_custom_target(docs_site ALL
+		DEPENDS ${PROJECT_BINARY_DIR}/live_docs.sh
+	)
+
+	add_custom_command(TARGET docs_site 
+		COMMAND ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_BINARY_DIR}/live_docs.cmake")
 
 	add_custom_command(TARGET docs_site POST_BUILD
-		COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --cyan "You can open the documentation in your browser on http://localhost:8000")
+		COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --cyan "You can open run live documentation in your browser on http://localhost:8000 after you execute the ${PROJECT_BINARY_DIR}/live_docs.sh")
 
 endif()
 
@@ -129,8 +138,6 @@ add_custom_command(OUTPUT "${EBOOK_DIR}/${PROJECT_NAME}.epub"
 #	WORKING_DIRECTORY ${EBOOK_DIR}
 	COMMENT "Generating epub documentation" VERBATIM
 )
-
-
 
 
 
