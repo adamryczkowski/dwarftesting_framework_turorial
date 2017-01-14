@@ -18,8 +18,11 @@ pages:
         - Git & git flow: 3-1-git-flow.md
         - Open project: 3-2-openproject.md
   - Tools:
-        - cmake: 4-1-cmake.md
-        - slack: 4-2-slack.md
-        - jenkins: 4-3-jenkins.md
-  - General tips: 4-4-misc.md
+        - Cmake: 4-1-cmake.md
+        - Slack: 4-2-slack.md
+        - Jenkins: 4-3-jenkins.md
+        - Git: 4-4-git.md
+        - Puppet: 4-5-puppet.md
+        - Eclipse: 4-6-eclipse.md
+  - General tips: 5-1-misc.md
 theme: readthedocs
