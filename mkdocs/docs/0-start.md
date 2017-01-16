@@ -24,3 +24,45 @@ git clone --recursive --shallow-submodules git@git.imgw.ad:aryczkowski/propoze.g
 As of December 2016, it will save you around 15MB of disk space by not storing dead (unused) objects present in git history.
 
 
+# Instalation script on Ubuntu 16.04
+
+This script was tested on fresh LXC container with Ubuntu 16.04 on 16.I.2017. It should work on all Ubuntu 16.04 systems.
+
+First install the required packages:
+
+## The minimal dependencies
+
+```{bash}
+sudo apt update
+sudo apt install cmake git build-essential gfortran libboost-dev libboost-system1.58-dev libboost-timer1.58-dev libboost-chrono1.58-dev libboost-program-options1.58-dev mkdocs python-minimal
+
+```
+
+## The recommended dependencies
+
+```{bash}
+
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
+sudo apt dist-upgrade #upgrades git
+sudo apt install pandoc python3-pip cmake-curses-gui texlive-latex-base texlive-fonts-recommended
+sudo dpkg-reconfigure locales
+export LC_ALL=C; pip3 install mkdocs-pandoc
+```
+
+Recommended dependencies include newer version of git, 2.11 as of writing this manual. You may want it to pull recursively the submodules and for the `--shallow-submodules` switch. Other dependency are programs that generate the LaTeX documentation.
+
+## Pulling the source and building it.
+
+Please remove the `--shallow-submodules` command line switch if your git is older than version 2.11.
+```{bash}
+git clone --shallow-submodules --recursive git@git.imgw.ad:aryczkowski/propoze.git all
+mkdir all/build
+cd all/build
+cmake ..
+ccmake .. #Optional. You can set PDF to 1, to make PDF documentation as well, if you've followed the recommended dependencies.
+make -j 8
+cmake .. #Yes, you need to run cmake & make twice...
+make -j 8 
+```
+
