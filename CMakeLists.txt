@@ -6,9 +6,6 @@ set(CMAKE_PREFIX_PATH cmake)
 find_package(MkDocs REQUIRED)
 
 
-# message(STATUS "${MKDOCS_EXECUTABLE} ${MKDOCS_VERSION}")
-message(STATUS "ENGINE NAME ${ENGINE_NAME}")
-
 set(PROJECT_NAME "Propoze documentation")
 set(AUTHOR "Adam Ryczkowski")
 set(COPYRIGHT ${ENGINE_COPYRIGHT})
