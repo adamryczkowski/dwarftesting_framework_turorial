@@ -34,7 +34,7 @@ First install the required packages:
 
 ```{bash}
 sudo apt update
-sudo apt install cmake git build-essential gfortran libboost-dev libboost-system1.58-dev libboost-timer1.58-dev libboost-chrono1.58-dev libboost-program-options1.58-dev mkdocs python-minimal
+sudo apt install cmake git build-essential gfortran libboost-dev libboost-system1.58-dev libboost-timer1.58-dev libboost-chrono1.58-dev libboost-program-options1.58-dev mkdocs python-minimal libmpich-dev
 
 ```
 

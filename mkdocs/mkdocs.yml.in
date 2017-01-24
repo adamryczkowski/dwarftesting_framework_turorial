@@ -11,7 +11,8 @@ pages:
   - Getting started: 
         - First build: 0-1-start.md
         - Pull changes: 0-2-pull.md
-        - Push changes: 0-3-push.md
+        - Develop: 0-3-edit.md
+        - Push changes: 0-4-push.md
   - Grid-tools: 1-grid-tools.md
   - Testing framework: 
         - Serialbox: 2-1-serialbox.md
