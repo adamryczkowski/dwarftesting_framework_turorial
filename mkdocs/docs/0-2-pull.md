@@ -7,7 +7,7 @@ Normally you would simply type `git pull` in the directory. Unfortunately this r
 The best practice is to define a git command **pullall* that does `git pull && git submodule update --init --recursive` like this
 
 ```{bash}
-git config --global alias.pullall '!git submodule update --init --recursive'
+git config --global alias.pullall '!git submodule update --init --recursive --remote'
 
 git config --global alias.pullall '!git pull && git submodule update --init --recursive'
 ``` 
