@@ -7,8 +7,12 @@ Normally you would simply type `git pull` in the directory. Unfortunately this r
 The best practice is to define a git command **pullall* that does `git pull && git submodule update --init --recursive` like this
 
 ```{bash}
+git config --global alias.pullall '!git submodule update --init --recursive'
+
 git config --global alias.pullall '!git pull && git submodule update --init --recursive'
 ``` 
+
+
 
 After that, to successfully pull the latest image of the repository as seen by last developer who pushed his commit is to do `git pullall` in the root superproject, i.e.
 
