@@ -1,0 +1,32 @@
+docs_dir: @DOCS_DIR@/docs
+site_dir: @SITE_DIR@
+site_name: @PROJECT_NAME@
+site_author: @AUTHOR@
+use_directory_urls: @USE_DIRECTORY_URLS@
+site_description:  @PROJECT_NAME@ documentation
+repo_url: https://github.com/lzubiaur/woot
+copyright: @COPYRIGHT@
+pages:
+  - Home: index.md
+  - Getting started: 
+        - First build: 0-1-start.md
+        - Pull changes: 0-2-pull.md
+        - Develop: 0-3-edit.md
+        - Push changes: 0-4-push.md
+  - Grid-tools: 1-grid-tools.md
+  - Testing framework: 
+        - Serialbox: 2-1-serialbox.md
+        - Verification framework: 2-2-dwarfs.md
+        - Advanced debugging: 2-3-debugging.md
+  - Colaboration framework:
+        - Git & git flow: 3-1-git-flow.md
+        - Open project: 3-2-openproject.md
+  - Tools:
+        - Cmake: 4-1-cmake.md
+        - Slack: 4-2-slack.md
+        - Jenkins: 4-3-jenkins.md
+        - Git: 4-4-git.md
+        - Puppet: 4-5-puppet.md
+        - Eclipse: 4-6-eclipse.md
+  - General tips: 5-1-misc.md
+theme: readthedocs
