@@ -4,6 +4,8 @@ For the Fortran code we support Eclipse Mars (*not the current one*) with the [P
 
 For the C++ we haven't decided yet, but it may be either Eclipse with the CDT or QT Designer.
 
+# Fortran code with Eclipse
+
 ## Installing the Eclipse Mars with Photran 
 
 ### Eclipse installation.
@@ -139,3 +141,76 @@ Then click **Run** to test if it runs. The Eclipse will create the build configu
 Now come back to the same the dialog and change the location of the executable to the one inside the Photran's project, `all/mpdata-eclipse/dwarf` in case of our example. Otherwise you will build one file, but debug another. 
 
 That's it! Now you can run, debug, and edit the Fortran code inside the Eclispe IDE.
+
+# Develop with command-line tools
+
+## Meaningful command prompt
+
+I recommend using `liquidprompt` To install do `sudo apt install liquidprompt` and then `liquidprompt_activate` as a current user.  
+
+Liquidprompt alters command line bash prompt to give various visual cues about the current directory, and state of the machine:
+
+* It shows you whether you are logged directly, or remotely
+* It shows whether the current directory is writable by you
+* It shows current branch and number of modified lines if you are inside a git repository (very helpful)
+* It shows the temperature of the CPU if it is over a safe limit.
+
+and many more. 
+
+![example liquidprompt prompt](liquidprompt1.png)
+
+In the picture above you can see that
+
+* the temperature of the CPU (60°C, slightly warm)
+* green `@` means that I have write permission in the current directory
+* the `±` sign means that I am inside the git repository, after this sign...
+* ...there is a name of the current branch. Red means that the directory is dirty (there are some changes not commited), yellow means that my repository is ahead of the remote and I probably need to do `git push`, and green means that the working tree is clean.
+* Number in the brackets tells number of lines added/removed from all the files in the repository relative to the last commit in the whole current repository. 
+
+## Terminal multiplexer (tmux)
+
+Install the package `byobu`. The byoubu in itself is very helpful, but it is even better if you would customize it a little. 
+
+### Bare byobu
+
+At first glance Byobu is a "better screen", but it is powered by the `tmux` to give the best of both programs. 
+
+It allows splitting the terminal window into panes and, like screen, allows switching the windows. It persists between logins, so if you work remotely, you can simply disconnect, return home, and reconnect to find all the opened panes and windows preserved.
+
+**Warning**: If byobu is run with `screen` keyboard bindings, it binds all function keys. To regain the them (for instance to operate Midnight Commander) press Shift+F12.
+
+![example session in tmux](byobu.png)
+
+In some directories in our repository you may find `set-tmux.sh` files. They define my own customization of windows and panes for a typical work in a given directory. The picture above illustrates this with the layout for the `propoze-docs` directory.
+
+Like `vim`, `tmux` operates using a bunch of keyboard shortcuts. All the keys can be customized. Here are the most important ones with default bindings:
+
+* `Shift-F12` disables all function key bindings specific to byobu
+* `C-a space` or `C-a n` switches to the next window (if there are any)
+* `C-a c` creates a new window
+* `C-a d` detaches from the current tmux/byobu session. The session will keep running in the background.
+* `C-a [` enters the text copying mode. In this mode use arrows to navigate to the beginning of the text you want to copy, press `space` and navigate to the end of the text, and press `enter` to copy it to the buffer. 
+* `C-a ]` pastes previously copied text.
+* `C-a arrows` navigate between panes.
+
+There are many customizations the make `tmux` seamlessly blend with the `vim`, but since I am not a user of the `vim` so I cannot test them.
+
+
+
+### Customized tmux
+
+Since byobu runs on top of `tmux`, it can benefit from its plugin system - most of the plugins for the `tmux` work equally well under `byobu`. To set this up, see `install-byobu-tmux.sh` file in the main repository.
+
+It will re-map keys for pane navigation: `C-a + |` will split vertically current window, `C-a + -` - horizontally. Keys `H`, `J`, `K` and `L` will work in similar fassion as in vim to move focus around panes and resize them. 
+
+Additionaly it will install four plug-ins:
+
+
+* `sensible` is a package with default customizations of tmux. Most of them are already present in byobu, but it never hurt to load it anyway.
+
+* `resurrect` adds `C-a + C-s` ('s' as in 'save') commands that capture current window layout *and* running applications and save them to the session file. Later on (e.g. after system restart) you can restore the session with `C-a + C-r` ('r' as in 'restore').
+
+* continuum continuously saves the current session, so you don't have to remember to save them with keys above.
+
+* yank allows for `C-a + C-y` to copy current command line to the real clipboard; `C-a C-Y` to copy current pwd to the real clipboard, `y` to copy selection to the real clipboard in the copy mode.
+
