@@ -142,6 +142,10 @@ Now come back to the same the dialog and change the location of the executable t
 
 That's it! Now you can run, debug, and edit the Fortran code inside the Eclispe IDE.
 
+## Alternative path
+
+[http://stackoverflow.com/questions/9453851/how-to-configure-eclipse-cdt-for-cmake]
+
 # Develop with command-line tools
 
 ## Meaningful command prompt

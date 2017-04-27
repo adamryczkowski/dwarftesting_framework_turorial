@@ -19,17 +19,18 @@
 #
 # Find MkDocs...
 #
-
 find_program(MKDOCS_EXECUTABLE
-  NAMES mkdocs
-  PATHS
-    /usr/local/bin
-  DOC "MkDocs documentation generation tool (http://www.mkdocs.org)"
+	NAMES mkdocs
+	DOC "MkDocs documentation generation tool (http://www.mkdocs.org)"
 )
 
 if(MKDOCS_EXECUTABLE)
-  execute_process(COMMAND ${MKDOCS_EXECUTABLE} "--version" OUTPUT_VARIABLE MKDOCS_VERSION_OUTPUT OUTPUT_STRIP_TRAILING_WHITESPACE)
-  string(REGEX MATCH "[0-9\.*]\.*" MKDOCS_VERSION ${MKDOCS_VERSION_OUTPUT})
+	execute_process(
+		COMMAND ${MKDOCS_EXECUTABLE} "--version" 
+		OUTPUT_VARIABLE MKDOCS_VERSION_OUTPUT 
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+	)
+	string(REGEX REPLACE "^.*([0-9]+\\.[0-9]+\\.[0-9]+).*$" "\\1" MKDOCS_VERSION ${MKDOCS_VERSION_OUTPUT})
 endif()
 
 include(FindPackageHandleStandardArgs)

@@ -20,16 +20,18 @@
 #
 
 find_program(PANDOC_EXECUTABLE
-  NAMES pandoc
-  PATHS
-    /usr/bin
-  DOC "Pandoc document convertion tool (http://pandoc.org/)"
+	NAMES pandoc
+	PATHS
+		/usr/bin
+	DOC "Pandoc document convertion tool (http://pandoc.org/)"
 )
 
 if(PANDOC_EXECUTABLE)
-  execute_process(COMMAND ${PANDOC_EXECUTABLE} "--version"  
-	OUTPUT_VARIABLE PANDOC_VERSION_OUTPUT OUTPUT_STRIP_TRAILING_WHITESPACE)
-  string(REGEX MATCH "[0-9]+\.[0-9]*" PANDOC_VERSION ${PANDOC_VERSION_OUTPUT})
+	execute_process(COMMAND ${PANDOC_EXECUTABLE} "--version"  
+		OUTPUT_VARIABLE PANDOC_VERSION_OUTPUT OUTPUT_STRIP_TRAILING_WHITESPACE)
+	string(REGEX REPLACE "^.*([0-9]+\\.[0-9]+).*$" "\\1" PANDOC_EXECUTABLE ${PANDOC_VERSION_OUTPUT})
+
+#	string(REGEX MATCH "[0-9]+\.[0-9]*" PANDOC_VERSION ${PANDOC_VERSION_OUTPUT})
 endif()
 
 

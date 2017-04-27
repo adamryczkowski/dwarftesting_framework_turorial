@@ -27,8 +27,8 @@
 find_program(MKDOCS2PANDOC_EXECUTABLE
   NAMES mkdocs2pandoc
   PATHS
-    /usr/local/bin
     $ENV{HOME}/.local/bin
+    $ENV{HOME}/bin
   DOC "MkDocs2Pandoc documentation generation tool (https://github.com/jgrassler/mkdocs-pandoc)"
 )
 

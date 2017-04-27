@@ -27,7 +27,7 @@ if (${DO_PDF})
 	list(APPEND DOCUMENTATION_FORMAT "pdf")
 	set(PDF_DIR ${PROJECT_BINARY_DIR}/pdf)
 #	file(MAKE_DIRECTORY ${PDF_DIR})
-	message("Made ${PDF_DIR}")
+	message(STATUS "Made ${PDF_DIR}")
 #	add_dependencies(ALL docs_pdf)
 	add_custom_target(docs_pdf ALL
 		DEPENDS ${PDF_DIR}/${PROJECT_NAME}.pdf
@@ -41,7 +41,7 @@ if (${DO_HTML})
 	list(APPEND DOCUMENTATION_FORMAT "html")
 	set(HTML_DIR ${PROJECT_BINARY_DIR}/site)
 	file(MAKE_DIRECTORY ${HTML_DIR})
-	message("Made ${HTML_DIR}")
+	message(STATUS "Made ${HTML_DIR}")
 #	add_dependencies(ALL docs_html)
 	add_custom_target(docs_html ALL 
 		DEPENDS ${HTML_DIR}/index.html
@@ -55,7 +55,7 @@ if (${DO_EBOOK})
 	list(APPEND DOCUMENTATION_FORMAT "ebook")
 	set(EBOOK_DIR ${PROJECT_BINARY_DIR}/ebook)
 #	file(MAKE_DIRECTORY ${EBOOK_DIR})
-	message("Made ${EBOOK_DIR}")
+	message(STATUS "Made ${EBOOK_DIR}")
 #	add_dependencies(ALL docs_ebook)
 	add_custom_target(docs_ebook ALL
 		DEPENDS ${EBOOK_DIR}/${PROJECT_NAME}.epub
