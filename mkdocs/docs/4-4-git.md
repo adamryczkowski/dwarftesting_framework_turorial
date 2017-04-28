@@ -4,6 +4,13 @@ Adding a submodule inserts as a folder with the submodule's contents. Make sure,
 
 Then type `git submodule add <uri with the submodule> [<folder-name>]`
 
+If you want to add a shallow submodule (good idea only if you are going to use only one, head branch), then do:
+
+```
+git submodule add --depth 1 <uri with the submodule> [<folder-name>]
+git config -f .gitmodules submodule.<submodule name>.shallow true
+```
+
 If you want your users to push changes to this submodule, then make sure the `uri with the submodule` points to the read/write place. In case of github prefer links in the form of `git@github.com:adamryczkowski/gridtools.git` rather than `https://github.com/adamryczkowski/gridtools.git`. 
 
 # How do I remove a submodule?
@@ -23,11 +30,9 @@ Via the page *[Git Submodule Tutorial][1]*:
   [1]: https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal
 
 
-**How to write a git commit message
+# How to write a git commit message
 
-![How not to write a git commit messages](xkcd1296.png)
-
-https://chris.beams.io/posts/git-commit/
+[source](https://chris.beams.io/posts/git-commit/)
 
 
 
@@ -42,13 +47,16 @@ https://chris.beams.io/posts/git-commit/
 
 A properly formed Git commit subject line should always be able to complete the following sentence:
 
->    If applied, this commit will your subject line here
+> *   **If applied, this commit will** *your subject line here*
 
 For example:
 
->    If applied, this commit will refactor subsystem X for readability
->    If applied, this commit will update getting started documentation
->    If applied, this commit will remove deprecated methods
->    If applied, this commit will release version 1.0.0
->    If applied, this commit will merge pull request #123 from user/branch
+> *   *If applied, this commit will* refactor subsystem X for readability
+> *   *If applied, this commit will* update getting started documentation
+> *   *If applied, this commit will* remove deprecated methods
+> *   *If applied, this commit will* release version 1.0.0
+> *   *If applied, this commit will* merge pull request #123 from user/branch
+
+![How not to write a git commit messages](xkcd1296.png)
+
 
