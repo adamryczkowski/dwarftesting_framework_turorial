@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd "@PROJECT_BINARY_DIR@"
+cd "@MKDOCS_YAML_DIR@"
 
 mkdocs serve
