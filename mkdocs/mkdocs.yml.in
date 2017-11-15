@@ -1,7 +1,11 @@
+docs_dir: @DOCS_DIR@
+site_dir: @HTML_DIR@
+dev_addr: 0.0.0.0:8000
 site_name: Propoze documentation
 site_author: Adam Ryczkowski
 use_directory_urls: FALSE
-site_description:  Propoze documentation documentation
+site_description:  Propoze documentation
+repo_url: https://github.com/lzubiaur/woot
 pages:
   - Home: index.md
   - Getting started: 

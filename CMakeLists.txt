@@ -27,12 +27,12 @@ else()
 endif()
 
 set (CMAKE_MODULE_PATH "${SUPERBUILD_ROOT}/cmake")
-set (CMAKE_PREFIX_PATH "${SUPERBUILD_ROOT}/cmake/prefix")
+set (CMAKE_PREFIX_PATH "${SUPERBUILD_ROOT}/propoze-docs/cmake")
 
 set_directory_properties(${SUPERBUILD_ROOT}/build CLEAN_NO_CUSTOM TRUE)
 set_directory_properties(${SUPERBUILD_ROOT}/install CLEAN_NO_CUSTOM TRUE)
 
-include(adam)
+include(configure_3rd_party_library)
 
 
 #  Configuration options
@@ -40,24 +40,24 @@ include(adam)
 
 
 
-set(DO_PDF 0 CACHE BOOL "Whether generate PDF documentation (requires mkdocs2pandoc + LaTeX)")
-set(DO_HTML 1 CACHE BOOL "Whether generate documentation in static HTML")
-set(DO_EBOOK 0 CACHE BOOL "Whether generate documentation in epub format (requires mkdocs2pandoc)")
-set(DO_LIVE 1 CACHE BOOL "Whether to start server that serves the documentation in http://localhost:8000")
+#set(DO_PDF 0 CACHE BOOL "Whether generate PDF documentation (requires mkdocs2pandoc + LaTeX)")
+#set(DO_HTML 1 CACHE BOOL "Whether generate documentation in static HTML")
+#set(DO_EBOOK 0 CACHE BOOL "Whether generate documentation in epub format (requires mkdocs2pandoc)")
+#set(DO_LIVE 1 CACHE BOOL "Whether to start server that serves the documentation in http://localhost:8000")
 
-set(DOS "")
-if(DO_PDF)
-	list(APPEND DOS "DO_PDF")
-endif()
-if(DO_HTML)
-	list(APPEND DOS "DO_HTML")
-endif()
-if(DO_EBOOK)
-	list(APPEND DOS "DO_EBOOK")
-endif()
-if(DO_LIVE)
-	list(APPEND DOS "DO_LIVE")
-endif()
+#set(DOS "")
+#if(DO_PDF)
+#	list(APPEND DOS "DO_PDF")
+#endif()
+#if(DO_HTML)
+#	list(APPEND DOS "DO_HTML")
+#endif()
+#if(DO_EBOOK)
+#	list(APPEND DOS "DO_EBOOK")
+#endif()
+#if(DO_LIVE)
+#	list(APPEND DOS "DO_LIVE")
+#endif()
 
 
 #  Target definitions and library references
@@ -65,10 +65,10 @@ endif()
 
 
 include(mkdocs)
-configure_mkdocs(
-	${DOS}
-	SOURCE mkdocs/mkdocs.yml
+mkdocs_documentation(
+	SOURCE mkdocs/mkdocs.yml.in
 	TARGET_NAME propoze_docs
 	DOCS_SUBDIR docs
+	FORMAT pdf
 )
 

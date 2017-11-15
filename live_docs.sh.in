@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd "@MKDOCS_YAML_DIR@"
+cd "@SITE_DIR@"
 
 mkdocs serve
