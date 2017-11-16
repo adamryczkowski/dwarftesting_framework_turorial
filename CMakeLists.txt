@@ -32,7 +32,7 @@ set (CMAKE_PREFIX_PATH "${SUPERBUILD_ROOT}/propoze-docs/cmake")
 set_directory_properties(${SUPERBUILD_ROOT}/build CLEAN_NO_CUSTOM TRUE)
 set_directory_properties(${SUPERBUILD_ROOT}/install CLEAN_NO_CUSTOM TRUE)
 
-include(configure_3rd_party_library)
+include(common)
 
 
 #  Configuration options
@@ -72,3 +72,9 @@ mkdocs_documentation(
 	FORMAT pdf
 )
 
+
+
+
+#  Printing error report in case there are missing components
+# -----------------------------------------------------------
+missing_dependency(FINALIZE)

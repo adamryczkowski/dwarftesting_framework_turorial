@@ -35,15 +35,8 @@ find_program(MKDOCS2PANDOC_EXECUTABLE
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(MkDocs2Pandoc DEFAULT_MSG MKDOCS2PANDOC_EXECUTABLE)
 
-if(NOT MkDocs2Pandoc_FOUND)
-	message(FATAL_ERROR "No mkdocs2pandoc found. Please install it using\n\n       sudo -H pip3 install mkdocs-pandoc\n\n")
-endif()
+#if(NOT MkDocs2Pandoc_FOUND)
+#	message(FATAL_ERROR "No mkdocs2pandoc found. Please install it using\n\n       sudo -H pip3 install mkdocs-pandoc\n\n")
+#endif()
 
 mark_as_advanced(MKDOCS2PANDOC_EXECUTABLE)
-
-find_package(Pandoc)
-
-if(NOT Pandoc_FOUND)
-	message(FATAL_ERROR "No pandoc found. Please install it using\n\n       sudo apt install pandoc\n\n")
-endif()
-
