@@ -28,13 +28,13 @@ Problems with the gridtools:
 
 //Preferred API for gridtools 2.0, ported to C++ syntax: (although not possible to implement in the current C++ due to lack of any form of compile time code introspection)
 
-constexpr auto dimX = axis_along_field() + ascending();
+constexpr auto dimX = auto_dim() + ascending();
 //
 //
 //dimension - defines span of the axis. Two modes: relative to the field, and fixed (unrelated to the fields' axes)
 //
 //relative mode nouns:
-//auto_dim - the same dimension that the field has. It means that if it is definition of the second axis,
+//auto_dim - Axis along the fields, the same dimension that the field has. It means that if it is definition of the second axis,
 //           it will take size of the second dimension of the fields, and in this case it is equivalent to `dim(1_c)`.
 //dim(0_c) - first (0th) dimension of the input fields. Throws compilation error, if stencil used with a 
 //           field that is bigger or smaller in this dimesion.
@@ -58,9 +58,9 @@ constexpr auto dimX = axis_along_field() + ascending();
 
 //This is the code for the stencil. It takes two arguments: in fields and inout fields
 auto mystencil1 []() {
-	constexpr auto dimX = axis_along_field() + ascending();
-	constexpr auto dimY = axis_along_field() + parallel();
-	constexpr auto dimZ = axis_along_field(auto_dim + upper_margin(1) + lower_margin(1)) + parallel(); //iterates in parallel along the third axis, but not only the inner range, but also 
+	constexpr auto dimX = auto_dim() + ascending();
+	constexpr auto dimY = auto_dim() + parallel();
+	constexpr auto dimZ = auto_dim() + upper_margin(1) + lower_margin(1)) + parallel(); //iterates in parallel along the third axis, but not only the inner range, but also 
 	//one pixel on each HALO direction. Required if we want to perform something on the HALO lines directly.
 	constexpr auto dimF = fixed_dimension(0_c, 4_c); //fixed-size dimension. Implicitely 
 	constexpr auto loop = declare_loop(dimX, dimY, dimZ, dimF);
