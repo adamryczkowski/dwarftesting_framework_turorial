@@ -28,7 +28,7 @@ Problems with the gridtools:
 
 //Preferred API for gridtools 2.0, ported to C++ syntax: (although not possible to implement in the current C++ due to lack of any form of compile time code introspection)
 
-constexpr auto dimX = axis_along_field(auto_dim, direction(1_c)); 
+constexpr auto dimX = axis_along_field() + ascending();
 //
 //
 //dimension - defines span of the axis. Two modes: relative to the field, and fixed (unrelated to the fields' axes)
